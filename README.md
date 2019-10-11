@@ -2,7 +2,23 @@
 
 # Project Structure
 
-Lucho writes here.
+## Packages
+
+Every package should be correctly installed on the environment that it's needed, that is, if a dependency is only used in development, it should be listed as a dev-dependency. To guarantee the integrity between the projects, when someone updates the package.json then _npm ci_ should be used, else _npm install package_ is just fine.
+
+## Folders
+
+### Components
+
+Each component should have it's own folder and should contain everything related to it
+
+### Assets
+
+Shared assets (Such as images) should be placed here.
+
+### Public
+
+This folder will contain the root index.html file and other elements to be used as the visible part of the project.
 
 # Development Cycle
 
