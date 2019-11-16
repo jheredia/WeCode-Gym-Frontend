@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormText, Label, Input } from "reactstrap";
+import { Button, FormGroup, Label, Input} from "reactstrap";
+import {Link} from "react-router-dom";
 import "./Login.css";
 
 export default function Login(props:any) {
@@ -14,8 +15,19 @@ export default function Login(props:any) {
     event.preventDefault();
   }
 
+  function myFunction() {
+    var x : HTMLInputElement;
+    x = document.getElementById("examplePassword") as HTMLInputElement;
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+
   return (
     <div className="Login">
+      <img src="../../../../logo192.png" alt="Logo"></img>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="email" bsSize="large">
           <Label for="exampleEmail">Email</Label>
@@ -24,10 +36,12 @@ export default function Login(props:any) {
         <FormGroup controlId="password" bsSize="large">
           <Label for="examplePassword">Password</Label>
           <Input type="password" name="password" id="examplePassword" placeholder="password" onChange={e => setPassword(e.target.value)}/>        
+          <Input type="checkbox" onClick={myFunction}/>Show Password
         </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
+        <Button block bsSize="large" disabled={!validateForm} type="submit">
           Login
         </Button>
+        <Link to="/restorePass">Restore Password</Link>
       </form>
     </div>
   );
