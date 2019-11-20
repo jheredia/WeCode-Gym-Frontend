@@ -1,28 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Button } from 'reactstrap';
+import Login from './components/login/Login'
+import RestorePass from './components/restorePass/RestorePass'
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	RouteComponentProps
+  } from "react-router-dom";
 
-function App() {
+function Index() {
+	return <h2>Home</h2>;
+} 
+
+type TParams =  { id: string };
+
+function Product({ match } : RouteComponentProps<TParams>) {
+	return <h2>This is a page for product with ID: {match.params.id} </h2>;
+}
+
+function AppRouter() {
 	return (
-		<div className='App'>
-			<header className='App-header'>
-				<img src={logo} className='App-logo' alt='logo' />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className='App-link'
-					href='https://reactjs.org'
-					target='_blank'
-					rel='noopener noreferrer'
-				>
-					Learn React
-				</a>
-			</header>
-			<Button>Caca</Button>
+		<Router>
+		<div>
+			<nav>
+			<ul>
+				<li>
+				<Link to="/">Home</Link>
+				</li>
+				<li>
+				<Link to="/login">Login</Link>
+				</li>
+			</ul>
+			</nav>
+	
+			<Route path="/" exact component={Index} />
+			<Route path="/products/:id" component={Product} />
+			<Route path="/login" component={Login} />
+			<Route path="/restorePass" component={RestorePass} />
 		</div>
+		</Router>
 	);
 }
 
-export default App;
+export default AppRouter;
